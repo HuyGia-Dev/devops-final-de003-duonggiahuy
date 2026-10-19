@@ -38,6 +38,10 @@ jobs:
               exit 1
             fi
           done
+          if [ "$MYSQL_USER" = "root" ]; then
+            echo "::error file=student.env::MYSQL_USER phải là tài khoản ứng dụng riêng, không dùng root"
+            exit 1
+          fi
           if [ "$EXAM_CODE" != "003" ] || [ "$MYSQL_DATABASE" != "ptit_task_db" ]; then
             echo "::error file=student.env::Không được sửa EXAM_CODE và MYSQL_DATABASE"
             exit 1
